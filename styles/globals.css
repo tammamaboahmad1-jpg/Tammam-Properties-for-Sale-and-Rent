@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body { @apply bg-gray-50 text-gray-800; }
+.container { @apply mx-auto px-4 sm:px-6 lg:px-8; }
