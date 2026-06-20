@@ -1,0 +1,36 @@
+# Tammam Properties — Real Estate MVP
+
+Stack: Next.js + TypeScript + Tailwind CSS, Supabase (Postgres + Storage)
+
+Quick start:
+1. Create a Supabase project and copy NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY.
+2. Create a bucket named `property-images` in Supabase Storage.
+3. Run the SQL in `schema.sql` using Supabase SQL editor.
+4. Create a `.env.local` from `.env.example` and fill keys.
+5. npm install && npm run dev
+
+Note: Do NOT commit secrets. Keep `.env.local` out of the repo.
+
+Important env vars used by the app:
+- NEXT_PUBLIC_SUPABASE_URL
+- NEXT_PUBLIC_SUPABASE_ANON_KEY
+- SUPABASE_SERVICE_ROLE_KEY (server-side only)
+- ADMIN_SECRET (server-side only)
+- NEXT_PUBLIC_ADMIN_SECRET (client-side used to send admin requests)
+- NEXT_PUBLIC_ADMIN_WHATSAPP (for client-side WhatsApp link, digits only or with +)
+- NEXT_PUBLIC_ADMIN_EMAIL (optional mailto link)
+- OPENAI_API_KEY (optional to enable AI generation on approve)
+
+Routes of interest:
+- /                — home list of published properties
+- /add             — public "أضف عقارك" form (submits as pending)
+- /properties/:id  — property details
+- /admin           — admin review board (approve/reject)
+
+APIs:
+- POST /api/properties             — create submission (public)
+- POST /api/properties/attach-image — attach uploaded image URL to property (server-side insert)
+- POST /api/admin/properties/:id/approve — approve (x-admin-secret header required)
+- POST /api/admin/properties/:id/reject  — reject (x-admin-secret header required)
+- POST /api/admin/properties/:id/update  — update property fields (x-admin-secret required)
+
